@@ -50,6 +50,10 @@ export default Vue.extend({
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+
+    &:focus {
+      outline: none;
+    }
   }
 
 }

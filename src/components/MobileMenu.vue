@@ -6,7 +6,7 @@
           <CrossSvg @click="closeMenu" class="cross-svg" />
           <div class="links">
             <router-link to="/" class="link" exact>Home</router-link>
-            <p class="link">Categories</p>
+            <p class="link" @click="onCategories">Categories</p>
             <router-link to="/random" class="link" exact>Random</router-link>
           </div>
         </div>
@@ -57,6 +57,17 @@ export default Vue.extend({
     },
     closeMenu() {
       this.open = false;
+    },
+    onCategories() {
+      const categories = document.querySelector('#categories') as HTMLElement;
+      if (categories) {
+        categories.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+      this.closeMenu();
     }
   }
 });

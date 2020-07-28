@@ -54,8 +54,13 @@ export default (Vue as VueConstructor<Refs>).extend({
       this.windowWidth = window.innerWidth;
     },
     onCategories() {
-      console.log('scroll');
-      // window.scrollTo();
+      const categories = document.querySelector('#categories') as HTMLElement;
+      if (categories) {
+        categories.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
     }
   },
   watch: {
