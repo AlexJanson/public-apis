@@ -1,21 +1,27 @@
 <template>
   <div class="app">
-    <!-- <div class="nav">
-      <router-link to="/">Home</router-link>
-    </div> -->
-    <Navbar />
-    <router-view/>
+    <StripeOne class="stripe-one-svg" />
+    <StripeTwo class="stripe-two-svg" />
+    <div class="content relative">
+      <Navbar />
+      <router-view/>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+
 import Navbar from '@/components/Navbar.vue';
+import StripeOne from '@/assets/StripeOne.svg';
+import StripeTwo from '@/assets/StripeTwo.svg';
 
 export default Vue.extend({
   name: "App",
   components: {
-    Navbar
+    Navbar,
+    StripeOne,
+    StripeTwo
   }
 });
 </script>
@@ -40,16 +46,37 @@ body {
   padding: 0;
 }
 
+h1, h2, h3,
+h4, h5, h6 {
+  font-weight: bold;
+}
+
+.spaced-heading {
+  font-weight: lighter;
+  color: $color-light-gray;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
 .app {
-  @include xl {
-    max-width: 1440px;
-  }
-
-  @include lg {
-    max-width: 992px;
-  }
-
   margin: 0 auto;
   padding: 0 20px;
+  position: relative;
+}
+
+.stripe-one-svg,
+.stripe-two-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.content {
+  z-index: 1;
+}
+
+.relative {
+  position: relative;
 }
 </style>

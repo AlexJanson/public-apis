@@ -5,9 +5,11 @@
 </template>
 
 <script lang="ts">
-export default {
+import Vue from 'vue';
+
+export default Vue.extend({
   name: 'Button',
-}
+});
 </script>
 
 <style lang="scss" scoped>
@@ -16,11 +18,11 @@ export default {
 .btn {
   background-color: $color-primary;
   font-size: 16px;
+  font-weight: 400;
   color: $color-white;
   border: none;
   border-radius: 3px;
-  font-weight: 400;
-  padding: 3px 12px;
+  padding: 3px 12px;  
   outline: none;
   cursor: pointer;
 }
