@@ -6,7 +6,7 @@
         <div class="nav-mobile" v-if="windowWidth < 768">
           <Button class="categories" @click="onCategories">Categories</Button>
           <HamburgerSvg class="hamburger-svg" @click="onMenu" />
-          <MobileMenu :open="isMenuOpen" />
+          <MobileMenu ref="mobileMenu" />
         </div>
       </div>
     </nav>
@@ -14,14 +14,20 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { VueConstructor } from 'vue';
 
 import HomeSvg from '@/assets/Home.svg';
 import HamburgerSvg from '@/assets/Hamburger.svg';
 import Button from '@/components/Button.vue';
 import MobileMenu from '@/components/MobileMenu.vue';
 
-export default Vue.extend({
+type Refs = Vue & {
+  $refs: {
+    mobileMenu: InstanceType<typeof MobileMenu>;
+  };
+}
+
+export default (Vue as VueConstructor<Refs>).extend({
   name: "Navbar",
   components: {
     HomeSvg,
@@ -42,7 +48,7 @@ export default Vue.extend({
       }
     },
     onMenu() {
-      this.isMenuOpen = !this.isMenuOpen;
+      this.$refs.mobileMenu.openMenu();
     },
     onResize() {
       this.windowWidth = window.innerWidth;
