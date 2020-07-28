@@ -17,18 +17,25 @@ export default Vue.extend({
   components: {
     Navbar
   }
-})
+});
 </script>
 
 <style lang="scss">
-@import "~@/scss/fonts.scss";
-@import "~@/scss/mixins.scss";
+@import "~@/scss/fonts";
+@import "~@/scss/mixins";
+@import "~@/scss/colors";
+
+* {
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 html,
 body {
   box-sizing: border-box;
-  background-color: #f4f4f4;
-  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+  background-color: $color-background;
   margin: 0;
   padding: 0;
 }
