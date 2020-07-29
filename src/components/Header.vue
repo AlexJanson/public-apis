@@ -7,26 +7,19 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 
 import SmallBar from '@/assets/SmallBar.svg';
 
-export default Vue.extend({
-  name: 'Header',
+@Component({
   components: {
     SmallBar
-  },
-  props: {
-    title: {
-      type: String,
-      required: true
-    },
-    description: {
-      type: String,
-      required: false
-    }
   }
-});
+})
+export default class Header extends Vue {
+  @Prop({ type: String, required: true }) readonly title!: string;
+  @Prop(String) readonly description!: string; 
+}
 </script>
 
 <style lang="scss" scoped>

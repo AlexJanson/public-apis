@@ -18,28 +18,25 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 
 import GithubSvg from '@/assets/Github.svg';
 import KeySvg from '@/assets/Key.svg';
 import LockSvg from '@/assets/Lock.svg';
 import CorsSvg from '@/assets/Cors.svg';
 
-export default Vue.extend({
-  name: 'APICard',
+@Component({
   components: {
     GithubSvg,
     KeySvg,
     LockSvg,
     CorsSvg
-  },
-  props: {
-    api: {
-      type: Object,
-      required: true
-    }
   }
-});
+})
+export default class APICard extends Vue {
+  @Prop({ type: Array, required: true })
+  readonly api!: Array<string>;
+}
 </script>
 
 <style lang="scss" scoped>

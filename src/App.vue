@@ -4,26 +4,26 @@
     <StripeTwo class="stripe-two-svg" />
     <div class="content relative">
       <Navbar />
-      <router-view/>
+      <router-view />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { Component, Vue } from 'vue-property-decorator';
 
 import Navbar from '@/components/Navbar.vue';
 import StripeOne from '@/assets/StripeOne.svg';
 import StripeTwo from '@/assets/StripeTwo.svg';
 
-export default Vue.extend({
-  name: "App",
+@Component({
   components: {
     Navbar,
     StripeOne,
     StripeTwo
   }
-});
+})
+export default class App extends Vue {}
 </script>
 
 <style lang="scss">

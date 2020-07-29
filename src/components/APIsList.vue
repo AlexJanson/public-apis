@@ -5,28 +5,21 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 
 import APICard from '@/components/APICard.vue';
 
-export default Vue.extend({
-  name: 'APIsList',
+@Component({
   components: {
     APICard
-  },
-  props: {
-    displayAmount: {
-      type: Number,
-      required: false,
-      default: 6
-    }
-  },
-  data() {
-    return {
-      apis: [],
-      page: 0
-    };
-  },
+  }
+})
+export default class APIsList extends Vue {
+  @Prop({ type: Number, default: 6 })
+  readonly displayAmount!: number;
+
+  apis = [];
+
   async mounted() {
     const response = await fetch(`https://api.publicapis.org/entries`);
     const apis = await response.json();
@@ -38,7 +31,7 @@ export default Vue.extend({
       };
     });
   }
-});
+}
 </script>
 
 <style lang="scss" scoped>

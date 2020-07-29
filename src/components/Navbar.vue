@@ -14,69 +14,65 @@
 </template>
 
 <script lang="ts">
-import Vue, { VueConstructor } from 'vue';
+import { Component, Watch, Vue, Ref } from 'vue-property-decorator';
 
 import HomeSvg from '@/assets/Home.svg';
 import HamburgerSvg from '@/assets/Hamburger.svg';
 import Button from '@/components/Button.vue';
 import MobileMenu from '@/components/MobileMenu.vue';
 
-type Refs = Vue & {
-  $refs: {
-    mobileMenu: InstanceType<typeof MobileMenu>;
-  };
-}
-
-export default (Vue as VueConstructor<Refs>).extend({
-  name: "Navbar",
+@Component({
   components: {
     HomeSvg,
     HamburgerSvg,
     Button,
     MobileMenu
-  },
-  data() {
-    return {
-      windowWidth: window.innerWidth,
-      isMenuOpen: false
-    };
-  },
-  methods: {
-    onHome() {
-      if (this.$router.currentRoute.path !== '/') {
-        this.$router.push('/');
-      }
-    },
-    onMenu() {
-      this.$refs.mobileMenu.openMenu();
-    },
-    onResize() {
-      this.windowWidth = window.innerWidth;
-    },
-    onCategories() {
-      const categories = document.querySelector('#categories') as HTMLElement;
-      if (categories) {
-        categories.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
+  }
+})
+export default class Navbar extends Vue {
+  @Ref() readonly mobileMenu!: MobileMenu;
+  windowWidth = window.innerWidth;
+  isMenuOpen = false;
+
+  onHome() {
+    if (this.$router.currentRoute.path !== '/') {
+      this.$router.push('/');
     }
-  },
-  watch: {
-    windowWidth(newWidth) {
-      this.windowWidth = newWidth;
+  }
+
+  onMenu() {
+    (this.$refs.mobileMenu as Vue & { openMenu: () => void }).openMenu();
+  }
+
+  onResize() {
+    this.windowWidth = window.innerWidth;
+  }
+
+  onCategories() {
+    const categories = document.querySelector('#categories') as HTMLElement;
+    if (categories) {
+      categories.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
     }
-  },
+  }
+
+  @Watch('windowWidth')
+  onWindowWidthChange(newWidth: number) {
+    this.windowWidth = newWidth;
+  }
+
   mounted() {
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize);
     });
-  },
+  }
+
   beforeDestroy() {
     window.removeEventListener('resize', this.onResize);
   }
-});
+}
 </script>
 
 <style lang="scss" scoped>

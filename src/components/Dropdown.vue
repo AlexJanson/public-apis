@@ -8,27 +8,22 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { Component, Vue, Prop, Emit } from 'vue-property-decorator';
 
-export default Vue.extend({
-  name: 'Dropdown',
-  props: {
-    placeholder: {
-      type: String,
-      required: true,
-      default: 'Pick an option'
-    },
-    items: {
-      type: Array,
-      required: true
-    }
-  },
-  data() {
-    return {
-      selected: ''
-    };
-  }
-});
+@Component
+export default class Dropdown extends Vue {
+  @Prop({ type: String, required: true, default: 'Pick an option' })
+  readonly placeholder!: string;
+  @Prop({ type: Array, required: true })
+  readonly items!: Array<string>;
+  
+  selected = '';
+
+  @Emit('selected')
+  onSelect() {
+    return this.selected;
+  }  
+}
 </script>
 
 <style lang="scss" scoped>

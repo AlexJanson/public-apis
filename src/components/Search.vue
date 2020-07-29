@@ -1,26 +1,28 @@
 <template>
   <div class="search-container">
-    <input type="text" placeholder="Search" class="search-input" v-model="value" @keyup="$emit('change', value)">
+    <input type="text" placeholder="Search" class="search-input" v-model="value" @keyup="onInputChange">
     <SearchSvg class="search-svg" />
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { Component, Vue, Emit } from 'vue-property-decorator';
 
 import SearchSvg from '@/assets/Search.svg';
 
-export default Vue.extend({
-  name: 'SearchInput',
+@Component({
   components: {
     SearchSvg
-  },
-  data() {
-    return {
-      value: ''
-    };
   }
-});
+})
+export default class Search extends Vue {
+  value = '';
+
+  @Emit('change')
+  onInputChange() {
+    return this.value;
+  }
+}
 </script>
 
 <style lang="scss" scoped>

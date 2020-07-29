@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { Component, Vue } from 'vue-property-decorator';
 
 import Header from '@/components/Header.vue';
 import IllustrationSvg from '@/assets/Illustration.svg';
@@ -25,33 +25,30 @@ import Search from '@/components/Search.vue';
 import Dropdown from '@/components/Dropdown.vue';
 import APIsList from '@/components/APIsList.vue';
 
-export default Vue.extend({
-  name: 'Home',
+@Component({
   components: {
     Header,
     IllustrationSvg,
     Search,
     Dropdown,
     APIsList
-  },
-  data() {
-    return {
-      categories: [
-        "Animals",
-        "Anime",
-        "Cloud Storage & File Sharing"
-      ]
-    }
-  },
-  methods: {
-    onSearch(value: string) {
-      console.log(value);
-    },
-    onCategory(value: string) {
-      console.log(value);
-    }
   }
-});
+})
+export default class Home extends Vue {
+  categories = [
+    "Animals",
+    "Anime",
+    "Cloud Storage & File Sharing"
+  ];
+
+  onSearch(value: string) {
+    console.log(value);
+  }
+  
+  onCategory(value: string) {
+    console.log(value);
+  }
+}
 </script>
 
 <style lang="scss" scoped>

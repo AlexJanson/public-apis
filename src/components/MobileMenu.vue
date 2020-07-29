@@ -16,61 +16,60 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { Component, Vue } from 'vue-property-decorator';
 
 import CrossSvg from '@/assets/Cross.svg';
 
-const getContentEl = () => {
-  return document.querySelector('.content');
-}
-
-export default Vue.extend({
-  name: 'MobileMenu',
+@Component({
   components: {
     CrossSvg
-  },
-  data() {
-    return {
-      open: false,
-      overlay: false
-    };
-  },
-  methods: {
-    afterLeave() {
-      this.overlay = false;
+  }
+})
+export default class MobileMenu extends Vue {
+  open = false;
+  overlay = false;
 
-      document.body.style.overflow = '';
-      const content = getContentEl();
-      if (content) {
-        content.classList.add('relative');
-      }
-    },
-    openMenu() {
-      this.overlay = true;
-      this.open = true;
+  getContentEl() {
+    return document.querySelector('.content');
+  }
 
-      document.body.style.overflow = 'hidden';
-      const content = getContentEl();
-      if (content) {
-        content.classList.remove('relative');
-      }
-    },
-    closeMenu() {
-      this.open = false;
-    },
-    onCategories() {
-      const categories = document.querySelector('#categories') as HTMLElement;
-      if (categories) {
-        categories.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
+  afterLeave() {
+    this.overlay = false;
 
-      this.closeMenu();
+    document.body.style.overflow = '';
+    const content = this.getContentEl();
+    if (content) {
+      content.classList.add('relative');
     }
   }
-});
+
+  openMenu() {
+    this.overlay = true;
+    this.open = true;
+
+    document.body.style.overflow = 'hidden';
+    const content = this.getContentEl();
+    if (content) {
+      content.classList.remove('relative');
+    }
+  }
+
+  closeMenu() {
+    this.open = false;
+  }
+
+  onCategories() {
+    const categories = document.querySelector('#categories') as HTMLElement;
+    if (categories) {
+      categories.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    this.closeMenu();
+  }
+}
 
 </script>
 
