@@ -24,7 +24,7 @@ export default class Header extends Vue {
 
 <style lang="scss" scoped>
 .header-container {
-  margin: 60px 0 0 0;
+  margin: 110px 0 0 0;
 
   .title {
     font-size: 40px;

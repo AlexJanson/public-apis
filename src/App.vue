@@ -4,7 +4,9 @@
     <StripeTwo class="stripe-two-svg" />
     <div class="content relative">
       <Navbar />
-      <router-view />
+      <div class="view">
+        <router-view />
+      </div>
     </div>
   </div>
 </template>
@@ -60,8 +62,10 @@ h4, h5, h6 {
 
 .app {
   margin: 0 auto;
+}
+
+.view {
   padding: 0 20px;
-  position: relative;
 }
 
 .stripe-one-svg,

@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-container">
+  <div :class="['nav-container', scroll ? 'scroll' : '']">
     <nav class="nav">
       <HomeSvg class="home-svg" @click="onHome" />
       <div class="nav-links">
@@ -31,8 +31,10 @@ import MobileMenu from '@/components/MobileMenu.vue';
 })
 export default class Navbar extends Vue {
   @Ref() readonly mobileMenu!: MobileMenu;
+
   windowWidth = window.innerWidth;
   isMenuOpen = false;
+  scroll = window.scrollY > 0;
 
   onHome() {
     if (this.$router.currentRoute.path !== '/') {
@@ -46,6 +48,10 @@ export default class Navbar extends Vue {
 
   onResize() {
     this.windowWidth = window.innerWidth;
+  }
+
+  onScroll() {
+    this.scroll = window.scrollY > 50;
   }
 
   onCategories() {
@@ -63,23 +69,35 @@ export default class Navbar extends Vue {
     this.windowWidth = newWidth;
   }
 
+  @Watch('scroll')
+  onWindowScroll(scroll: boolean) {
+    this.scroll = scroll;
+  }
+
   mounted() {
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize);
+      window.addEventListener('scroll', this.onScroll);
     });
   }
 
   beforeDestroy() {
     window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('scroll', this.onScroll);
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '~@/scss/colors';
+
 .nav-container {
-  padding: 20px 0 0 0;
-  margin-bottom: 20px;
-  width: 100%;
+  padding: 20px;
+  width: calc(100% - 20px * 2);
+  position: fixed;
+  top: 0;
+  z-index: 9;
+  transition: background 200ms ease-in-out, box-shadow 200ms ease-in-out;
   
   .nav {
     display: flex;
@@ -111,6 +129,12 @@ export default class Navbar extends Vue {
       align-items: flex-end;
     }
 
+  }
+
+  &.scroll {
+    transition: background 200ms ease-in-out, box-shadow 200ms ease-in-out;
+    background-color: $color-white;
+    box-shadow: 0 2px 5px 0 rgba($color-black, .25);
   }
 
 }
