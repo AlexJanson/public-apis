@@ -1,6 +1,6 @@
 <template>
   <div class="apis-list-container">
-    <APICard />
+    <APICard v-for="(api, index) in apis" :key="index" :api="api" />
   </div>
 </template>
 
@@ -13,6 +13,30 @@ export default Vue.extend({
   name: 'APIsList',
   components: {
     APICard
+  },
+  props: {
+    displayAmount: {
+      type: Number,
+      required: false,
+      default: 6
+    }
+  },
+  data() {
+    return {
+      apis: [],
+      page: 0
+    };
+  },
+  async mounted() {
+    const response = await fetch(`https://api.publicapis.org/entries`);
+    const apis = await response.json();
+    this.apis = apis.entries.map((api: {API: string; Description: string; Category: string}) => {
+      return {
+        name: api.API,
+        description: api.Description,
+        category: api.Category
+      };
+    });
   }
 });
 </script>
