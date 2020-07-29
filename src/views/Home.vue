@@ -18,12 +18,16 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { Action, Getter } from 'vuex-class';
 
 import Header from '@/components/Header.vue';
 import IllustrationSvg from '@/assets/Illustration.svg';
 import Search from '@/components/Search.vue';
 import Dropdown from '@/components/Dropdown.vue';
 import APIsList from '@/components/APIsList.vue';
+import APIObject from '../store/api/models/APIObject';
+
+const namespace = 'api';
 
 @Component({
   components: {
@@ -35,11 +39,9 @@ import APIsList from '@/components/APIsList.vue';
   }
 })
 export default class Home extends Vue {
-  categories = [
-    "Animals",
-    "Anime",
-    "Cloud Storage & File Sharing"
-  ];
+  @Action('fetchAPIs', { namespace }) readonly fetchAPIs!: () => void;
+  @Getter('getApis', { namespace }) readonly getApis!: Array<APIObject>;
+  @Getter('getCategories', { namespace }) readonly categories!: Array<string>;
 
   onSearch(value: string) {
     console.log(value);
@@ -47,6 +49,10 @@ export default class Home extends Vue {
   
   onCategory(value: string) {
     console.log(value);
+  }
+
+  mounted() {
+    this.fetchAPIs();
   }
 }
 </script>

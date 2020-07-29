@@ -7,10 +7,11 @@ import { actions } from './actions';
 import { mutations } from './mutations';
 
 export const state: APIState = {
-  apis: []
+  apis: [],
+  count: 0
 };
 
-const namespaced: boolean = true;
+const namespaced = true;
 
 export const api: Module<APIState, RootState> = {
   namespaced,

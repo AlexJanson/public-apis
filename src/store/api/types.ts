@@ -1,5 +1,6 @@
 import APIObject from '../api/models/APIObject';
 
 export interface APIState {
-  apis: APIObject
+  apis: Array<APIObject> | [];
+  count: number;
 };

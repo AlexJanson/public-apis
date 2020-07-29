@@ -1,7 +1,7 @@
 export interface APIResponseObject {
   API: string;
   Description: string;
-  Auth: string;
+  Auth: 'apiKey' | 'OAuth' | '';
   HTTPS: boolean;
   Cors: string;
   Link: string;
