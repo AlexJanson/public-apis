@@ -1,4 +1,4 @@
-export default interface APIModel {
+export default interface APIObject {
   name: string;
   description: string;
   category: string;

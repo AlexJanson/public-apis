@@ -8,6 +8,7 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 
 import APICard from '@/components/APICard.vue';
+import APIObject from '../store/api/models/APIObject';
 
 @Component({
   components: {
@@ -18,7 +19,7 @@ export default class APIsList extends Vue {
   @Prop({ type: Number, default: 6 })
   readonly displayAmount!: number;
 
-  apis = [];
+  apis: Array<APIObject> = [];
 
   async mounted() {
     const response = await fetch(`https://api.publicapis.org/entries`);

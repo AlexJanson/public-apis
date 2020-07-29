@@ -25,6 +25,8 @@ import KeySvg from '@/assets/Key.svg';
 import LockSvg from '@/assets/Lock.svg';
 import CorsSvg from '@/assets/Cors.svg';
 
+import APIObject from '@/store/api/models/APIObject';
+
 @Component({
   components: {
     GithubSvg,
@@ -34,8 +36,8 @@ import CorsSvg from '@/assets/Cors.svg';
   }
 })
 export default class APICard extends Vue {
-  @Prop({ type: Array, required: true })
-  readonly api!: Array<string>;
+  @Prop({ type: Object, required: true })
+  readonly api!: APIObject;
 }
 </script>
 
