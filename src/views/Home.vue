@@ -12,7 +12,7 @@
         <p class="spaced-heading">Category</p>
         <Dropdown placeholder="Choose a category" :items="categories" @selected="onCategory" />
       </div>
-      <APIsList :search="search" :category="category" />
+      <APIsList :search="search" :category="category" :displayAmount="6" />
   </div>
 </template>
 

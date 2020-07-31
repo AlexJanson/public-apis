@@ -1,7 +1,7 @@
 <template>
   <div class="apis-list-container">
     <APICard v-for="(api, index) in apis" :key="index" :api="api" />
-    <Pagination />
+    <Pagination :pages="totalPages" @pageselect="onPageSelect" />
   </div>
 </template>
 
@@ -22,12 +22,15 @@ const namespace = 'api';
   }
 })
 export default class APIsList extends Vue {
-  @Prop({ type: Number, default: 6 })
-  readonly displayAmount!: number;
+  @Prop(Number)
+  displayAmount!: number;
   @Prop(String)
   search!: string;
   @Prop(String)
   category!: string;
+
+  totalPages = 1;
+  page = 1;
 
   @Watch('search')
   onSearchChange(value: string) {
@@ -44,6 +47,16 @@ export default class APIsList extends Vue {
   @Getter('isLoading', { namespace })
   readonly isLoading!: boolean;
 
+  @Watch('getApis')
+  onFetched() {
+    this.totalPages = Math.ceil(this.getApis.length / this.displayAmount);
+  }
+
+  @Watch('displayAmount')
+  onDisplayAmountChange() {
+    this.onFetched();
+  }
+
   get apis() {
     let result: Array<APIObject> = this.getApis;
     if (this.search) {
@@ -52,8 +65,12 @@ export default class APIsList extends Vue {
     if (this.category) {
       result = result.filter(api => api.category === this.category);
     }
-    const page = result;
+    const page = result.slice(this.displayAmount * (this.page - 1), this.displayAmount * this.page);
     return page;
+  }
+
+  onPageSelect(page: number) {
+    this.page = page;
   }
 }
 </script>
