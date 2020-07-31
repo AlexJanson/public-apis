@@ -91,6 +91,10 @@ export default class APIsList extends Vue {
   onPageSelect(page: number) {
     this.page = page;
   }
+
+  mounted() {
+    this.calculateTotalPages();
+  }
 }
 </script>
 
