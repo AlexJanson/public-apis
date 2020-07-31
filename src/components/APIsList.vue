@@ -1,7 +1,9 @@
 <template>
   <div class="apis-list-container">
-    <APICard v-for="(api, index) in apis" :key="index" :api="api" />
-    <Pagination :pages="getTotalPages" :page="page" @pageselect="onPageSelect" />
+    <div class="list">
+      <APICard v-for="(api, index) in apis" :key="index" :api="api" />
+    </div>
+    <Pagination :pages="getTotalPages" :page="page" @pageselect="onPageSelect" class="pagination" />
   </div>
 </template>
 
@@ -99,11 +101,43 @@ export default class APIsList extends Vue {
 </script>
 
 <style lang="scss" scoped>
+@import '~@/scss/mixins';
+
 .apis-list-container {
   display: grid;
 
   grid-template-columns: 100%;
 
   margin: 30px 0;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@include md {
+  .apis-list-container {
+    display: grid;
+    width: 100%;
+
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(2, auto);
+
+    margin: 30px 0;
+
+    .pagination {
+      grid-column: 1 / 3;
+      grid-row: 2;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      grid-column: 1 / 3;
+      align-items: center;
+    }
+  }
 }
 </style>

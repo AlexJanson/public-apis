@@ -36,6 +36,7 @@ export default class Dropdown extends Vue {
   border-radius: 5px;
   border: 1px $color-dark-gray solid;
   background-color: $color-white;
+  height: fit-content;
 
   .dropdown-input {
     width: 100%;

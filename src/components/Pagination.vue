@@ -119,6 +119,7 @@ export default class Pagination extends Vue {
 @import '~@/scss/colors';
 .pagination-container {
   display: flex;
+  // max-width: 600px;
 
   .pages {
     display: inline-block;

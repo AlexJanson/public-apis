@@ -8,6 +8,13 @@
           <HamburgerSvg class="hamburger-svg" @click="onMenu" />
           <MobileMenu ref="mobileMenu" />
         </div>
+        <div class="nav-content" v-if="windowWidth >= 768">
+          <ul class="nav-list">
+            <router-link to="/" class="nav-link" exact>Home</router-link>
+            <p class="nav-link" @click="onCategories">Categories</p>
+            <router-link to="/random" class="nav-link" exact>Random</router-link>
+          </ul>
+        </div>
       </div>
     </nav>
   </div>
@@ -130,6 +137,38 @@ export default class Navbar extends Vue {
     .nav-mobile {
       display: flex;
       align-items: flex-end;
+    }
+
+    .nav-links {
+      .nav-content {
+        height: 100%;
+        .nav-list {
+          height: 100%;
+          margin: 0;
+          display: flex;
+          align-items: flex-end;
+          flex-direction: row;
+          line-height: 0.8;
+  
+          .nav-link {
+            color: $color-black;
+            // margin-top: auto;
+            justify-content: flex-end;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+  
+            &.router-link-active,
+            &:hover {
+              color: $color-primary;
+            }
+          }
+  
+          & > *:not(:first-child) {
+            margin: 0 0 0 50px;
+          }
+        }
+      }
     }
 
   }

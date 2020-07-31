@@ -34,6 +34,7 @@ export default class Search extends Vue {
   border-radius: 5px;
   border: 1px $color-dark-gray solid;
   background-color: $color-white;
+  height: fit-content;
 
   .search-input {
     width: 210px;
