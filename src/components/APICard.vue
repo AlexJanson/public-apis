@@ -1,5 +1,5 @@
 <template>
-  <div class="api-card-container">
+  <div class="api-card-container" @click="goToDetail">
     <div class="api-card-content">
       <GithubSvg class="github-svg" />
       <h1 class="api-title" :title="api.name">{{ api.name }}</h1>
@@ -38,6 +38,11 @@ import APIObject from '@/store/api/models/APIObject';
 export default class APICard extends Vue {
   @Prop({ type: Object, required: true })
   readonly api!: APIObject;
+
+  goToDetail() {
+    window.scrollTo(0, 0);
+    this.$router.push(`/detail/${this.api.id}`);
+  }
 }
 </script>
 

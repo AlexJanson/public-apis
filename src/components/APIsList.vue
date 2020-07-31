@@ -1,7 +1,7 @@
 <template>
   <div class="apis-list-container">
     <APICard v-for="(api, index) in apis" :key="index" :api="api" />
-    <Pagination :pages="totalPages2 " :page="page" @pageselect="onPageSelect" />
+    <Pagination :pages="getTotalPages" :page="page" @pageselect="onPageSelect" />
   </div>
 </template>
 
@@ -58,7 +58,6 @@ export default class APIsList extends Vue {
 
   calculateTotalPages() {
     const apis = this.filterList(this.getApis);
-    console.log(Math.ceil(apis.length / this.displayAmount));
     this.totalPages = Math.ceil(apis.length / this.displayAmount);
   }
 
@@ -85,7 +84,7 @@ export default class APIsList extends Vue {
     return page;
   }
 
-  get totalPages2() {
+  get getTotalPages() {
     return this.totalPages;
   }
 

@@ -17,6 +17,9 @@ import { Component, Vue } from 'vue-property-decorator';
 import Navbar from '@/components/Navbar.vue';
 import StripeOne from '@/assets/StripeOne.svg';
 import StripeTwo from '@/assets/StripeTwo.svg';
+import { Action } from 'vuex-class';
+
+const namespace = 'api';
 
 @Component({
   components: {
@@ -25,7 +28,14 @@ import StripeTwo from '@/assets/StripeTwo.svg';
     StripeTwo
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  @Action('fetchAPIs', { namespace })
+  readonly fetchAPIs!: () => void;
+
+  mounted() {
+    this.fetchAPIs();
+  }
+}
 </script>
 
 <style lang="scss">

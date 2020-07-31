@@ -55,7 +55,6 @@ import LeftArrow from '@/assets/LeftArrow.svg';
 import RightArrow from '@/assets/RightArrow.svg';
 
 const getRange = (n: number) => {
-  console.log(`Range: ${n}`);
   const range: Array<number> = [];
 
   for(let i = 1; i <= n; i++) {

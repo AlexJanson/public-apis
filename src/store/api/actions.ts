@@ -11,7 +11,7 @@ export const actions: ActionTree<APIState, RootState> = {
     commit('isLoading', true);
     const data = await fetch(`${API_BASE_URL}/entries`);
     const result = await (data.json() as Promise<APIResponseModel>);
-    const apis: Array<APIObject> = result.entries.map((api: APIResponseObject) => {
+    const apis: Array<APIObject> = result.entries.map((api: APIResponseObject, index) => {
       return {
         name: api.API,
         description: api.Description,
@@ -19,7 +19,8 @@ export const actions: ActionTree<APIState, RootState> = {
         cors: (api.Cors === "yes" ? true : api.Cors === "no" ? false : "unknown"),
         https: api.HTTPS,
         apikey: api.Auth,
-        url: api.Link
+        url: api.Link,
+        id: index
       } as APIObject;
     });
     commit('apisFetched', apis);

@@ -6,4 +6,5 @@ export default interface APIObject {
   https: boolean;
   cors: boolean | 'unknown';
   url: string;
+  id: number;
 }

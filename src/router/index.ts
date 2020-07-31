@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
+import Detail from '../views/Detail.vue';
+import Random from '../views/Random.vue';
 
 Vue.use(VueRouter)
 
@@ -9,6 +11,16 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/detail/:id',
+    name: 'API detail',
+    component: Detail
+  },
+  {
+    path: '/random',
+    name: 'Random API',
+    component: Random
   }
 ]
 
