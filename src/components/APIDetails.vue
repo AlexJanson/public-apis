@@ -28,6 +28,8 @@ export default class APIDetails extends Vue {
 @import '~@/scss/colors';
 
 .api-details-container {
+  word-wrap: break-word;
+
   .api-detail {
     color: $color-black;
     font-weight: 400;
