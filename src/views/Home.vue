@@ -12,7 +12,7 @@
         <p class="spaced-heading">Category</p>
         <Dropdown placeholder="Choose a category" :items="categories" @selected="onCategory" />
       </div>
-      <APIsList />
+      <APIsList :search="search" :category="category" />
   </div>
 </template>
 
@@ -40,15 +40,17 @@ const namespace = 'api';
 })
 export default class Home extends Vue {
   @Action('fetchAPIs', { namespace }) readonly fetchAPIs!: () => void;
-  @Getter('getApis', { namespace }) readonly getApis!: Array<APIObject>;
   @Getter('getCategories', { namespace }) readonly categories!: Array<string>;
 
+  search = '';
+  category = '';
+
   onSearch(value: string) {
-    console.log(value);
+    this.search = value;
   }
   
   onCategory(value: string) {
-    console.log(value);
+    this.category = value;
   }
 
   mounted() {

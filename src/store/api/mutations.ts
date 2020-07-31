@@ -8,5 +8,8 @@ export const mutations: MutationTree<APIState> = {
   },
   apisCount(state, count: number) {
     state.count = count;
+  },
+  isLoading(state, value) {
+    state.isLoading = value;
   }
 };

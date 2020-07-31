@@ -12,9 +12,12 @@ export const getters: GetterTree<APIState, RootState> = {
     state.apis.forEach((api: APIObject) => {
       categories.add(api.category);
     });
-    return categories;
+    return Array.from(categories);
   },
-  getApisCount(state): number {
+  getApisCount(state) {
     return state.count;
+  },
+  isLoading(state) {
+    return state.isLoading;
   }
 };

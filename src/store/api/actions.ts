@@ -8,6 +8,7 @@ import APIObject from './models/APIObject';
 
 export const actions: ActionTree<APIState, RootState> = {
   async fetchAPIs({ commit }) {
+    commit('isLoading', true);
     const data = await fetch(`${API_BASE_URL}/entries`);
     const result = await (data.json() as Promise<APIResponseModel>);
     const apis: Array<APIObject> = result.entries.map((api: APIResponseObject) => {
@@ -23,5 +24,6 @@ export const actions: ActionTree<APIState, RootState> = {
     });
     commit('apisFetched', apis);
     commit('apisCount', result.count);
+    commit('isLoading', false);
   }
 };
