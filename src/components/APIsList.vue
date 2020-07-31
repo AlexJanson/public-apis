@@ -1,7 +1,7 @@
 <template>
   <div class="apis-list-container">
     <APICard v-for="(api, index) in apis" :key="index" :api="api" />
-    <Pagination :pages="totalPages" @pageselect="onPageSelect" />
+    <Pagination :pages="totalPages2 " :page="page" @pageselect="onPageSelect" />
   </div>
 </template>
 
@@ -35,11 +35,15 @@ export default class APIsList extends Vue {
   @Watch('search')
   onSearchChange(value: string) {
     this.search = value;
+    this.page = 1;
+    this.calculateTotalPages();
   }
 
   @Watch('category')
   onCategoryChange(value: string) {
     this.category = value;
+    this.page = 1;
+    this.calculateTotalPages();
   }
 
   @Getter('getApis', { namespace })
@@ -49,24 +53,40 @@ export default class APIsList extends Vue {
 
   @Watch('getApis')
   onFetched() {
-    this.totalPages = Math.ceil(this.getApis.length / this.displayAmount);
+    this.calculateTotalPages();
+  }
+
+  calculateTotalPages() {
+    const apis = this.filterList(this.getApis);
+    console.log(Math.ceil(apis.length / this.displayAmount));
+    this.totalPages = Math.ceil(apis.length / this.displayAmount);
   }
 
   @Watch('displayAmount')
   onDisplayAmountChange() {
-    this.onFetched();
+    this.calculateTotalPages();
+  }
+
+  filterList(apis: Array<APIObject>) {
+    if (this.search) {
+      apis = apis.filter(api => api.name.toLowerCase().includes(this.search.toLowerCase()));
+    }
+    if (this.category) {
+      apis = apis.filter(api => api.category === this.category);
+    }
+
+    return apis;
   }
 
   get apis() {
     let result: Array<APIObject> = this.getApis;
-    if (this.search) {
-      result = result.filter(api => api.name.toLowerCase().includes(this.search.toLowerCase()));
-    }
-    if (this.category) {
-      result = result.filter(api => api.category === this.category);
-    }
+    result = this.filterList(result);
     const page = result.slice(this.displayAmount * (this.page - 1), this.displayAmount * this.page);
     return page;
+  }
+
+  get totalPages2() {
+    return this.totalPages;
   }
 
   onPageSelect(page: number) {

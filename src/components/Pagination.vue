@@ -49,12 +49,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Emit } from 'vue-property-decorator';
+import { Component, Vue, Prop, Emit, Watch } from 'vue-property-decorator';
 
 import LeftArrow from '@/assets/LeftArrow.svg';
 import RightArrow from '@/assets/RightArrow.svg';
 
 const getRange = (n: number) => {
+  console.log(`Range: ${n}`);
   const range: Array<number> = [];
 
   for(let i = 1; i <= n; i++) {
@@ -73,16 +74,13 @@ const getRange = (n: number) => {
 export default class Pagination extends Vue {
   @Prop({ type: Number, required: true })
   readonly pages!: number;
+  @Prop(Number)
+  readonly page!: number;
 
   range: Array<number> = [];
   beginRange: Array<number> = [1, 2, 3];
   endRange: Array<number> = [];
   currentPage = 1;
-
-  showEndDots() {
-    console.log(this.endRange.includes(this.currentPage));
-    return !this.endRange.includes(this.currentPage);
-  }
 
   next() {
     this.setCurrentPage(++this.currentPage);
@@ -98,6 +96,20 @@ export default class Pagination extends Vue {
   }
 
   mounted() {
+    this.calculateRanges();
+  }
+
+  @Watch('pages')
+  onPagesChange() {
+    this.calculateRanges();
+  }
+
+  @Watch('page')
+  onPageChange() {
+    this.setCurrentPage(this.page);
+  }
+
+  calculateRanges() {
     this.range = getRange(this.pages);
     this.endRange = [...this.range.slice(this.range.length - 3, this.range.length)]
   }

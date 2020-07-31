@@ -2,6 +2,7 @@
   <div class="dropdown-container">
     <select class="dropdown-input" v-model="selected" @change="$emit('selected', selected)">
       <option value="" disabled selected>{{ placeholder }}</option>
+      <option value="">No category</option>
       <option v-for="(item, index) in items" :value="item" :key="index">{{ item }}</option>
     </select>
   </div>
