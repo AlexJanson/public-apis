@@ -25,17 +25,17 @@ export const getters: GetterTree<APIState, RootState> = {
     return api || null;
   },
   getRecommendedApis: (state: APIState) => (category: string, amount: number, id: number): Array<APIObject> | null => {
-    const ids: Array<number> = [];
+    const indecis: Array<number> = [];
     const apis = state.apis.filter((api: APIObject) => api.category === category);
 
-    while (ids.length < amount) {
+    while (indecis.length < amount) {
       const random = Math.floor(Math.random() * apis.length);
-      if (ids.indexOf(random) === -1 && random !== id) {
-        ids.push(random);
+      if (indecis.indexOf(random) === -1 && random !== id) {
+        indecis.push(random);
       }
     }
 
-    return state.apis.filter((api: APIObject) => ids.includes(api.id));
+    return indecis.map(i => apis[i]);
   },
   getRandomApi: (state: APIState) => (): APIObject => {
     return state.apis[Math.floor(Math.random() * state.apis.length)];

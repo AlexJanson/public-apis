@@ -55,6 +55,9 @@ export default class Navbar extends Vue {
   }
 
   onCategories() {
+    if (this.$router.currentRoute.path !== '/') {
+      this.$router.push('/');
+    }
     const categories = document.querySelector('#categories') as HTMLElement;
     if (categories) {
       categories.scrollIntoView({
