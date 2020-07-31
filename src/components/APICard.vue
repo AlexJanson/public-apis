@@ -6,11 +6,11 @@
       <p class="api-description">{{ api.description }}</p>
       <div class="api-card-details">
         <KeySvg class="key-svg" />
-        <p>apikey</p>
+        <p>{{ api.apikey ? api.apikey : "N/A" }}</p>
         <LockSvg class="lock-svg" />
-        <p>https</p>
+        <p>{{ api.https ? "HTTPS" : "Unavailable" }}</p>
         <CorsSvg class="cors-svg" />
-        <p>unknown</p>
+        <p>{{ api.cors }}</p>
       </div>
       <p class="api-card-category">{{ api.category }}</p>
     </div>
