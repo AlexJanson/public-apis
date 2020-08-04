@@ -6,33 +6,40 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue, Prop } from "vue-property-decorator";
 
-import APICard from '@/components/APICard.vue';
-import APIObject from '../store/api/models/APIObject';
-import { Getter } from 'vuex-class';
+import APICard from "@/components/APICard.vue";
+import APIObject from "../store/api/models/APIObject";
+import { Getter } from "vuex-class";
 
-const namespace = 'api';
+const namespace = "api";
 
 @Component({
   components: {
-    APICard
-  }
+    APICard,
+  },
 })
 export default class Recommended extends Vue {
   @Prop(String)
   readonly category!: string;
   @Prop(String)
   readonly amount!: string;
-  @Getter('getRecommendedApis', { namespace })
-  readonly getRecommendedApis!: (category: string, amount: number, id: number) => Array<APIObject>;
+  @Getter("getRecommendedApis", { namespace })
+  readonly getRecommendedApis!: (
+    category: string,
+    amount: number,
+    id: number
+  ) => Array<APIObject>;
 
   get apis() {
-    return this.getRecommendedApis(this.category, +this.amount, +this.$route.params.id);
+    return this.getRecommendedApis(
+      this.category,
+      +this.amount,
+      +this.$route.params.id
+    );
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
 </style>

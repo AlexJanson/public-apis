@@ -9,19 +9,55 @@
         <p v-if="currentPage > 4">...</p>
         <button :class="[currentPage === 2 ? 'active' : '']" v-else @click="setCurrentPage(2)">2</button>
 
-        <button v-if="currentPage >= 4 && currentPage <= pages - 3" @click="setCurrentPage(currentPage - 1)">{{ currentPage - 1 }}</button>
-        <button :class="[currentPage === 3 ? 'active' : '']" v-else-if="currentPage <= 4" @click="setCurrentPage(3)">3</button>
-        <button :class="[currentPage === pages - 4 ? 'active' : '']" v-else @click="setCurrentPage(pages - 4)">{{ pages - 4 }}</button>
-        <button :class="[currentPage ? 'active' : '']" v-if="currentPage >= 4 && currentPage <= pages - 3">{{ currentPage }}</button>
-        <button :class="[currentPage === 4 ? 'active' : '']" v-else-if="currentPage <= 4" @click="setCurrentPage(4)">4</button>
-        <button :class="[currentPage === pages - 3 ? 'active' : '']" v-else @click="setCurrentPage(pages - 3)">{{ pages - 3 }}</button>
-        <button v-if="currentPage >= 4 && currentPage <= pages - 3" @click="setCurrentPage(currentPage + 1)">{{ currentPage + 1 }}</button>
+        <button
+          v-if="currentPage >= 4 && currentPage <= pages - 3"
+          @click="setCurrentPage(currentPage - 1)"
+        >{{ currentPage - 1 }}</button>
+        <button
+          :class="[currentPage === 3 ? 'active' : '']"
+          v-else-if="currentPage <= 4"
+          @click="setCurrentPage(3)"
+        >3</button>
+        <button
+          :class="[currentPage === pages - 4 ? 'active' : '']"
+          v-else
+          @click="setCurrentPage(pages - 4)"
+        >{{ pages - 4 }}</button>
+        <button
+          :class="[currentPage ? 'active' : '']"
+          v-if="currentPage >= 4 && currentPage <= pages - 3"
+        >{{ currentPage }}</button>
+        <button
+          :class="[currentPage === 4 ? 'active' : '']"
+          v-else-if="currentPage <= 4"
+          @click="setCurrentPage(4)"
+        >4</button>
+        <button
+          :class="[currentPage === pages - 3 ? 'active' : '']"
+          v-else
+          @click="setCurrentPage(pages - 3)"
+        >{{ pages - 3 }}</button>
+        <button
+          v-if="currentPage >= 4 && currentPage <= pages - 3"
+          @click="setCurrentPage(currentPage + 1)"
+        >{{ currentPage + 1 }}</button>
         <button v-else-if="currentPage <= 4" @click="setCurrentPage(5)">5</button>
-        <button :class="[currentPage === pages - 2 ? 'active' : '']" v-else @click="setCurrentPage(pages - 2)">{{ pages - 2 }}</button>
+        <button
+          :class="[currentPage === pages - 2 ? 'active' : '']"
+          v-else
+          @click="setCurrentPage(pages - 2)"
+        >{{ pages - 2 }}</button>
 
         <p v-if="currentPage < pages - 3">...</p>
-        <button :class="[currentPage === pages - 1 ? 'active' : '']" v-else @click="setCurrentPage(pages - 1)">{{ pages - 1 }}</button>
-        <button :class="[currentPage === pages ? 'active' : '']" @click="setCurrentPage(pages)">{{ pages }}</button>
+        <button
+          :class="[currentPage === pages - 1 ? 'active' : '']"
+          v-else
+          @click="setCurrentPage(pages - 1)"
+        >{{ pages - 1 }}</button>
+        <button
+          :class="[currentPage === pages ? 'active' : '']"
+          @click="setCurrentPage(pages)"
+        >{{ pages }}</button>
       </div>
       <button class="next" :disabled="currentPage === pages" @click="next()">
         <RightArrow class="arrow-right-svg" />
@@ -35,11 +71,9 @@
         <button
           v-for="r in range"
           :key="r"
-          :class="[currentPage === r ? 'active' : '']" 
+          :class="[currentPage === r ? 'active' : '']"
           @click="setCurrentPage(r)"
-          >
-          {{ r }}
-        </button>
+        >{{ r }}</button>
       </div>
       <button class="next" :disabled="currentPage === pages" @click="next()">
         <RightArrow class="arrow-right-svg" />
@@ -49,26 +83,26 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Emit, Watch } from 'vue-property-decorator';
+import { Component, Vue, Prop, Emit, Watch } from "vue-property-decorator";
 
-import LeftArrow from '@/assets/LeftArrow.svg';
-import RightArrow from '@/assets/RightArrow.svg';
+import LeftArrow from "@/assets/LeftArrow.svg";
+import RightArrow from "@/assets/RightArrow.svg";
 
 const getRange = (n: number) => {
   const range: Array<number> = [];
 
-  for(let i = 1; i <= n; i++) {
+  for (let i = 1; i <= n; i++) {
     range.push(i);
   }
 
   return range;
-}
+};
 
 @Component({
   components: {
     LeftArrow,
-    RightArrow
-  }
+    RightArrow,
+  },
 })
 export default class Pagination extends Vue {
   @Prop({ type: Number, required: true })
@@ -89,7 +123,7 @@ export default class Pagination extends Vue {
     this.setCurrentPage(--this.currentPage);
   }
 
-  @Emit('pageselect')
+  @Emit("pageselect")
   setCurrentPage(n: number) {
     this.currentPage = n;
   }
@@ -98,25 +132,27 @@ export default class Pagination extends Vue {
     this.calculateRanges();
   }
 
-  @Watch('pages')
+  @Watch("pages")
   onPagesChange() {
     this.calculateRanges();
   }
 
-  @Watch('page')
+  @Watch("page")
   onPageChange() {
     this.setCurrentPage(this.page);
   }
 
   calculateRanges() {
     this.range = getRange(this.pages);
-    this.endRange = [...this.range.slice(this.range.length - 3, this.range.length)]
+    this.endRange = [
+      ...this.range.slice(this.range.length - 3, this.range.length),
+    ];
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/scss/colors';
+@import "~@/scss/colors";
 .pagination-container {
   display: flex;
   max-width: 600px;
@@ -184,6 +220,5 @@ export default class Pagination extends Vue {
     color: $color-white;
     border: 1px solid $color-primary;
   }
-
 }
 </style>

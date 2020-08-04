@@ -13,26 +13,26 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from "vue-property-decorator";
 
-import Navbar from '@/components/Navbar.vue';
-import Footer from '@/components/Footer.vue';
-import StripeOne from '@/assets/StripeOne.svg';
-import StripeTwo from '@/assets/StripeTwo.svg';
-import { Action } from 'vuex-class';
+import Navbar from "@/components/Navbar.vue";
+import Footer from "@/components/Footer.vue";
+import StripeOne from "@/assets/StripeOne.svg";
+import StripeTwo from "@/assets/StripeTwo.svg";
+import { Action } from "vuex-class";
 
-const namespace = 'api';
+const namespace = "api";
 
 @Component({
   components: {
     Navbar,
     StripeOne,
     StripeTwo,
-    Footer
-  }
+    Footer,
+  },
 })
 export default class App extends Vue {
-  @Action('fetchAPIs', { namespace })
+  @Action("fetchAPIs", { namespace })
   readonly fetchAPIs!: () => void;
 
   mounted() {
@@ -47,7 +47,7 @@ export default class App extends Vue {
 @import "~@/scss/colors";
 
 * {
-  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -62,8 +62,12 @@ body {
   min-height: 100vh;
 }
 
-h1, h2, h3,
-h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: bold;
 }
 

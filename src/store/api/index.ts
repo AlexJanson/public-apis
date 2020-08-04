@@ -1,10 +1,10 @@
-import { APIState } from './types';
-import { Module } from 'vuex';
-import { RootState } from '../types';
+import { APIState } from "./types";
+import { Module } from "vuex";
+import { RootState } from "../types";
 
-import { getters } from './getters';
-import { actions } from './actions';
-import { mutations } from './mutations';
+import { getters } from "./getters";
+import { actions } from "./actions";
+import { mutations } from "./mutations";
 
 export const state: APIState = {
   isLoading: true,
@@ -20,4 +20,4 @@ export const api: Module<APIState, RootState> = {
   getters,
   actions,
   mutations
-}
+};

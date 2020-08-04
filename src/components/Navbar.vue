@@ -21,20 +21,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Watch, Vue, Ref } from 'vue-property-decorator';
+import { Component, Watch, Vue, Ref } from "vue-property-decorator";
 
-import HomeSvg from '@/assets/Home.svg';
-import HamburgerSvg from '@/assets/Hamburger.svg';
-import Button from '@/components/Button.vue';
-import MobileMenu from '@/components/MobileMenu.vue';
+import HomeSvg from "@/assets/Home.svg";
+import HamburgerSvg from "@/assets/Hamburger.svg";
+import Button from "@/components/Button.vue";
+import MobileMenu from "@/components/MobileMenu.vue";
 
 @Component({
   components: {
     HomeSvg,
     HamburgerSvg,
     Button,
-    MobileMenu
-  }
+    MobileMenu,
+  },
 })
 export default class Navbar extends Vue {
   @Ref() readonly mobileMenu!: MobileMenu;
@@ -44,8 +44,8 @@ export default class Navbar extends Vue {
   scroll = window.scrollY > 0;
 
   onHome() {
-    if (this.$router.currentRoute.path !== '/') {
-      this.$router.push('/');
+    if (this.$router.currentRoute.path !== "/") {
+      this.$router.push("/");
     }
   }
 
@@ -62,44 +62,44 @@ export default class Navbar extends Vue {
   }
 
   onCategories() {
-    if (this.$router.currentRoute.path !== '/') {
-      this.$router.push('/');
+    if (this.$router.currentRoute.path !== "/") {
+      this.$router.push("/");
     }
-    const categories = document.querySelector('#categories') as HTMLElement;
+    const categories = document.querySelector("#categories") as HTMLElement;
     if (categories) {
       categories.scrollIntoView({
         behavior: "smooth",
-        block: "start"
+        block: "start",
       });
     }
   }
 
-  @Watch('windowWidth')
+  @Watch("windowWidth")
   onWindowWidthChange(newWidth: number) {
     this.windowWidth = newWidth;
   }
 
-  @Watch('scroll')
+  @Watch("scroll")
   onWindowScroll(scroll: boolean) {
     this.scroll = scroll;
   }
 
   mounted() {
     this.$nextTick(() => {
-      window.addEventListener('resize', this.onResize);
-      window.addEventListener('scroll', this.onScroll);
+      window.addEventListener("resize", this.onResize);
+      window.addEventListener("scroll", this.onScroll);
     });
   }
 
   beforeDestroy() {
-    window.removeEventListener('resize', this.onResize);
-    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener("resize", this.onResize);
+    window.removeEventListener("scroll", this.onScroll);
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/scss/colors';
+@import "~@/scss/colors";
 
 .nav-container {
   padding: 20px;
@@ -108,7 +108,7 @@ export default class Navbar extends Vue {
   top: 0;
   z-index: 9;
   transition: background 200ms ease-in-out, box-shadow 200ms ease-in-out;
-  
+
   .nav {
     display: flex;
     height: 32px;
@@ -149,7 +149,7 @@ export default class Navbar extends Vue {
           align-items: flex-end;
           flex-direction: row;
           line-height: 0.8;
-  
+
           .nav-link {
             color: $color-black;
             // margin-top: auto;
@@ -157,27 +157,25 @@ export default class Navbar extends Vue {
             text-decoration: none;
             font-weight: bold;
             cursor: pointer;
-  
+
             &.router-link-active,
             &:hover {
               color: $color-primary;
             }
           }
-  
+
           & > *:not(:first-child) {
             margin: 0 0 0 50px;
           }
         }
       }
     }
-
   }
 
   &.scroll {
     transition: background 200ms ease-in-out, box-shadow 200ms ease-in-out;
     background-color: $color-white;
-    box-shadow: 0 2px 5px 0 rgba($color-black, .25);
+    box-shadow: 0 2px 5px 0 rgba($color-black, 0.25);
   }
-
 }
 </style>

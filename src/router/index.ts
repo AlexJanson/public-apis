@@ -1,33 +1,33 @@
-import Vue from 'vue'
-import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '../views/Home.vue'
-import Detail from '../views/Detail.vue';
-import Random from '../views/Random.vue';
+import Vue from "vue";
+import VueRouter, { RouteConfig } from "vue-router";
+import Home from "../views/Home.vue";
+import Detail from "../views/Detail.vue";
+import Random from "../views/Random.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-  const routes: Array<RouteConfig> = [
+const routes: Array<RouteConfig> = [
   {
-    path: '/',
-    name: 'Home',
+    path: "/",
+    name: "Home",
     component: Home
   },
   {
-    path: '/detail/:id',
-    name: 'API detail',
+    path: "/detail/:id",
+    name: "API detail",
     component: Detail
   },
   {
-    path: '/random',
-    name: 'Random API',
+    path: "/random",
+    name: "Random API",
     component: Random
   }
-]
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes
-})
+});
 
-export default router
+export default router;

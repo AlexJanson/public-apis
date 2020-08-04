@@ -8,20 +8,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
-import APICard from '@/components/APICard.vue';
-import APIObject from '../store/api/models/APIObject';
-import Pagination from '@/components/Pagination.vue';
-import { Getter } from 'vuex-class';
+import APICard from "@/components/APICard.vue";
+import APIObject from "../store/api/models/APIObject";
+import Pagination from "@/components/Pagination.vue";
+import { Getter } from "vuex-class";
 
-const namespace = 'api';
+const namespace = "api";
 
 @Component({
   components: {
     APICard,
-    Pagination
-  }
+    Pagination,
+  },
 })
 export default class APIsList extends Vue {
   @Prop(Number)
@@ -34,26 +34,26 @@ export default class APIsList extends Vue {
   totalPages = 1;
   page = 1;
 
-  @Watch('search')
+  @Watch("search")
   onSearchChange(value: string) {
     this.search = value;
     this.page = 1;
     this.calculateTotalPages();
   }
 
-  @Watch('category')
+  @Watch("category")
   onCategoryChange(value: string) {
     this.category = value;
     this.page = 1;
     this.calculateTotalPages();
   }
 
-  @Getter('getApis', { namespace })
+  @Getter("getApis", { namespace })
   readonly getApis!: Array<APIObject>;
-  @Getter('isLoading', { namespace })
+  @Getter("isLoading", { namespace })
   readonly isLoading!: boolean;
 
-  @Watch('getApis')
+  @Watch("getApis")
   onFetched() {
     this.calculateTotalPages();
   }
@@ -63,17 +63,19 @@ export default class APIsList extends Vue {
     this.totalPages = Math.ceil(apis.length / this.displayAmount);
   }
 
-  @Watch('displayAmount')
+  @Watch("displayAmount")
   onDisplayAmountChange() {
     this.calculateTotalPages();
   }
 
   filterList(apis: Array<APIObject>) {
     if (this.search) {
-      apis = apis.filter(api => api.name.toLowerCase().includes(this.search.toLowerCase()));
+      apis = apis.filter((api) =>
+        api.name.toLowerCase().includes(this.search.toLowerCase())
+      );
     }
     if (this.category) {
-      apis = apis.filter(api => api.category === this.category);
+      apis = apis.filter((api) => api.category === this.category);
     }
 
     return apis;
@@ -82,7 +84,10 @@ export default class APIsList extends Vue {
   get apis() {
     let result: Array<APIObject> = this.getApis;
     result = this.filterList(result);
-    const page = result.slice(this.displayAmount * (this.page - 1), this.displayAmount * this.page);
+    const page = result.slice(
+      this.displayAmount * (this.page - 1),
+      this.displayAmount * this.page
+    );
     return page;
   }
 
@@ -101,7 +106,7 @@ export default class APIsList extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '~@/scss/mixins';
+@import "~@/scss/mixins";
 
 .list {
   margin: 35px 0 0 0;
@@ -109,5 +114,4 @@ export default class APIsList extends Vue {
   flex-wrap: wrap;
   justify-content: center;
 }
-
 </style>

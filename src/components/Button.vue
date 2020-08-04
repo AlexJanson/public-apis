@@ -5,14 +5,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class Button extends Vue {}
 </script>
 
 <style lang="scss" scoped>
-@import '~@/scss/colors';
+@import "~@/scss/colors";
 
 .btn {
   background-color: $color-primary;
@@ -21,7 +21,7 @@ export default class Button extends Vue {}
   color: $color-white;
   border: none;
   border-radius: 3px;
-  padding: 3px 12px;  
+  padding: 3px 12px;
   outline: none;
   cursor: pointer;
 }

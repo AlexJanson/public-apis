@@ -1,6 +1,6 @@
-import { APIResponseObject } from './APIResponseObject';
+import { APIResponseObject } from "./APIResponseObject";
 
 export default interface APIResponseModel {
   count: number;
-  entries: Array<APIResponseObject>
+  entries: Array<APIResponseObject>;
 }

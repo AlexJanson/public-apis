@@ -1,36 +1,46 @@
 <template>
   <div class="home">
-    <Header 
-      title="All of your favourite free public APIs!" 
-      description="Need a free public API for your project? Find one here!" 
-      />
-      <IllustrationSvg class="illustration-svg" />
-      <h1 id="categories">Public APIs</h1>
-      <div class="filters">
-        <div class="search">
-          <p class="spaced-heading">Name</p>
-          <Search @change="onSearch" class="search-filter" />
-        </div>
-        <div class="category">
-          <p class="spaced-heading">Category</p>
-          <Dropdown placeholder="Choose a category" :items="categories" @selected="onCategory" class="dropdown-filter" />
-        </div>
+    <Header
+      title="All of your favourite free public APIs!"
+      description="Need a free public API for your project? Find one here!"
+    />
+    <IllustrationSvg class="illustration-svg" />
+    <h1 id="categories">Public APIs</h1>
+    <div class="filters">
+      <div class="search">
+        <p class="spaced-heading">Name</p>
+        <Search @change="onSearch" class="search-filter" />
       </div>
-      <APIsList :search="search" :category="category" :displayAmount="displayAmount" class="api-list" />
+      <div class="category">
+        <p class="spaced-heading">Category</p>
+        <Dropdown
+          placeholder="Choose a category"
+          :items="categories"
+          @selected="onCategory"
+          class="dropdown-filter"
+        />
+      </div>
+    </div>
+    <APIsList
+      :search="search"
+      :category="category"
+      :displayAmount="displayAmount"
+      class="api-list"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
-import { Getter } from 'vuex-class';
+import { Component, Vue, Watch } from "vue-property-decorator";
+import { Getter } from "vuex-class";
 
-import Header from '@/components/Header.vue';
-import IllustrationSvg from '@/assets/Illustration.svg';
-import Search from '@/components/Search.vue';
-import Dropdown from '@/components/Dropdown.vue';
-import APIsList from '@/components/APIsList.vue';
+import Header from "@/components/Header.vue";
+import IllustrationSvg from "@/assets/Illustration.svg";
+import Search from "@/components/Search.vue";
+import Dropdown from "@/components/Dropdown.vue";
+import APIsList from "@/components/APIsList.vue";
 
-const namespace = 'api';
+const namespace = "api";
 
 @Component({
   components: {
@@ -38,25 +48,25 @@ const namespace = 'api';
     IllustrationSvg,
     Search,
     Dropdown,
-    APIsList
-  }
+    APIsList,
+  },
 })
 export default class Home extends Vue {
-  @Getter('getCategories', { namespace }) readonly categories!: Array<string>;
+  @Getter("getCategories", { namespace }) readonly categories!: Array<string>;
 
-  search = '';
-  category = '';
+  search = "";
+  category = "";
 
   onSearch(value: string) {
     this.search = value;
   }
-  
+
   onCategory(value: string) {
     this.category = value;
   }
 
   get displayAmount() {
-    if(this.windowWidth > 992 && this.windowWidth < 1200) {
+    if (this.windowWidth > 992 && this.windowWidth < 1200) {
       return 8;
     }
     if (this.windowWidth > 1200) {
@@ -68,7 +78,7 @@ export default class Home extends Vue {
 
   windowWidth = window.innerWidth;
 
-  @Watch('windowWidth')
+  @Watch("windowWidth")
   onWindowWidthChange(newWidth: number) {
     this.windowWidth = newWidth;
   }
@@ -79,18 +89,18 @@ export default class Home extends Vue {
 
   mounted() {
     this.$nextTick(() => {
-      window.addEventListener('resize', this.onResize);
+      window.addEventListener("resize", this.onResize);
     });
   }
 
   beforeDestroy() {
-    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener("resize", this.onResize);
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/scss/mixins';
+@import "~@/scss/mixins";
 
 .illustration-svg {
   display: block;
@@ -136,7 +146,6 @@ export default class Home extends Vue {
     .api-list {
       grid-column: 1 / 3;
     }
-
   }
 }
 
@@ -178,7 +187,6 @@ export default class Home extends Vue {
     .api-list {
       grid-column: 1 / 3;
     }
-
   }
 }
 
@@ -221,7 +229,6 @@ export default class Home extends Vue {
     .api-list {
       grid-column: 1 / 3;
     }
-
   }
 }
 </style>

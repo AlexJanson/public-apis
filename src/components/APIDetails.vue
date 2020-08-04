@@ -24,8 +24,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
-import APIObject from '../store/api/models/APIObject';
+import { Component, Vue, Prop } from "vue-property-decorator";
+import APIObject from "../store/api/models/APIObject";
 
 @Component
 export default class APIDetails extends Vue {
@@ -35,8 +35,8 @@ export default class APIDetails extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '~@/scss/colors';
-@import '~@/scss/mixins';
+@import "~@/scss/colors";
+@import "~@/scss/mixins";
 
 .api-details-container {
   word-wrap: break-word;

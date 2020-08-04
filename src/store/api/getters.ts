@@ -1,7 +1,7 @@
-import { GetterTree } from 'vuex';
-import { APIState } from './types';
-import { RootState } from '../types';
-import APIObject from './models/APIObject';
+import { GetterTree } from "vuex";
+import { APIState } from "./types";
+import { RootState } from "../types";
+import APIObject from "./models/APIObject";
 
 export const getters: GetterTree<APIState, RootState> = {
   getApis(state: APIState) {
@@ -24,9 +24,15 @@ export const getters: GetterTree<APIState, RootState> = {
     const api = state.apis.find(api => api.id === id);
     return api || null;
   },
-  getRecommendedApis: (state: APIState) => (category: string, amount: number, id: number): Array<APIObject> | null => {
+  getRecommendedApis: (state: APIState) => (
+    category: string,
+    amount: number,
+    id: number
+  ): Array<APIObject> | null => {
     const indecis: Array<number> = [];
-    const apis = state.apis.filter((api: APIObject) => api.category === category);
+    const apis = state.apis.filter(
+      (api: APIObject) => api.category === category
+    );
 
     while (indecis.length < amount) {
       const random = Math.floor(Math.random() * apis.length);

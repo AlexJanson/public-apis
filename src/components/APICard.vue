@@ -18,22 +18,22 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue, Prop } from "vue-property-decorator";
 
-import GithubSvg from '@/assets/Github.svg';
-import KeySvg from '@/assets/Key.svg';
-import LockSvg from '@/assets/Lock.svg';
-import CorsSvg from '@/assets/Cors.svg';
+import GithubSvg from "@/assets/Github.svg";
+import KeySvg from "@/assets/Key.svg";
+import LockSvg from "@/assets/Lock.svg";
+import CorsSvg from "@/assets/Cors.svg";
 
-import APIObject from '@/store/api/models/APIObject';
+import APIObject from "@/store/api/models/APIObject";
 
 @Component({
   components: {
     GithubSvg,
     KeySvg,
     LockSvg,
-    CorsSvg
-  }
+    CorsSvg,
+  },
 })
 export default class APICard extends Vue {
   @Prop({ type: Object, required: true })
@@ -47,7 +47,7 @@ export default class APICard extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '~@/scss/colors';
+@import "~@/scss/colors";
 
 * {
   transition: background 200ms ease-in-out;
@@ -60,14 +60,14 @@ export default class APICard extends Vue {
   min-width: 443px;
   background-color: $color-white;
   border-radius: 8px;
-  box-shadow: 3px 4px 5px 0 rgba($color-black, .25);
+  box-shadow: 3px 4px 5px 0 rgba($color-black, 0.25);
   margin: 0 20px 20px 0;
   cursor: pointer;
   float: left;
 
   &:hover {
     background-color: $color-primary;
-    box-shadow: 3px 4px 5px 0 rgba($color-primary, .5);
+    box-shadow: 3px 4px 5px 0 rgba($color-primary, 0.5);
 
     .api-card-content {
       .github-svg {
@@ -100,15 +100,12 @@ export default class APICard extends Vue {
         & > p {
           color: $color-dark-white;
         }
-
       }
 
       .api-card-category {
         color: $color-white;
       }
-
     }
-    
   }
 
   .api-card-content {
@@ -140,7 +137,7 @@ export default class APICard extends Vue {
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
     }
-    
+
     .api-card-details {
       color: $color-black;
 
@@ -164,15 +161,12 @@ export default class APICard extends Vue {
         margin: 0 25px 0 7px;
         color: $color-light-gray;
       }
-
     }
 
     .api-card-category {
-        color: $color-black;
-        font-weight: bold;
-      }
-
+      color: $color-black;
+      font-weight: bold;
+    }
   }
-
 }
 </style>

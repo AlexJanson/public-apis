@@ -16,30 +16,30 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from "vue-property-decorator";
 
-import CrossSvg from '@/assets/Cross.svg';
+import CrossSvg from "@/assets/Cross.svg";
 
 @Component({
   components: {
-    CrossSvg
-  }
+    CrossSvg,
+  },
 })
 export default class MobileMenu extends Vue {
   open = false;
   overlay = false;
 
   getContentEl() {
-    return document.querySelector('.content');
+    return document.querySelector(".content");
   }
 
   afterLeave() {
     this.overlay = false;
 
-    document.body.style.overflow = '';
+    document.body.style.overflow = "";
     const content = this.getContentEl();
     if (content) {
-      content.classList.add('relative');
+      content.classList.add("relative");
     }
   }
 
@@ -47,10 +47,10 @@ export default class MobileMenu extends Vue {
     this.overlay = true;
     this.open = true;
 
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
     const content = this.getContentEl();
     if (content) {
-      content.classList.remove('relative');
+      content.classList.remove("relative");
     }
   }
 
@@ -59,25 +59,24 @@ export default class MobileMenu extends Vue {
   }
 
   onCategories() {
-    if (this.$router.currentRoute.path !== '/') {
-      this.$router.push('/');
+    if (this.$router.currentRoute.path !== "/") {
+      this.$router.push("/");
     }
-    const categories = document.querySelector('#categories') as HTMLElement;
+    const categories = document.querySelector("#categories") as HTMLElement;
     if (categories) {
       categories.scrollIntoView({
         behavior: "smooth",
-        block: "start"
+        block: "start",
       });
     }
 
     this.closeMenu();
   }
 }
-
 </script>
 
 <style lang="scss" scoped>
-@import '~@/scss/colors';
+@import "~@/scss/colors";
 
 .mobile-menu-container {
   position: absolute;
@@ -124,9 +123,7 @@ export default class MobileMenu extends Vue {
           }
         }
       }
-
     }
-
   }
 
   .slide-enter-active,
@@ -138,6 +135,5 @@ export default class MobileMenu extends Vue {
   .slide-leave-to {
     transform: translate(100%);
   }
-
 }
 </style>

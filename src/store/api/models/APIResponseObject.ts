@@ -1,9 +1,9 @@
 export interface APIResponseObject {
   API: string;
   Description: string;
-  Auth: 'apiKey' | 'OAuth' | '';
+  Auth: "apiKey" | "OAuth" | "";
   HTTPS: boolean;
   Cors: string;
   Link: string;
   Category: string;
-};
+}

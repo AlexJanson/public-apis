@@ -1,6 +1,6 @@
-import { MutationTree } from 'vuex';
-import { APIState } from './types';
-import APIObject from './models/APIObject';
+import { MutationTree } from "vuex";
+import { APIState } from "./types";
+import APIObject from "./models/APIObject";
 
 export const mutations: MutationTree<APIState> = {
   apisFetched(state, apis: Array<APIObject>) {

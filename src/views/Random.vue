@@ -1,41 +1,36 @@
 <template>
   <div class="random" v-if="api">
-    <Header
-      :title="api.name"
-      :description="api.description"
-      />
+    <Header :title="api.name" :description="api.description" />
     <APIDetails :api="api" class="api-details" />
     <h1 class="heading">Try your luck again!</h1>
-    <Button class="random-btn" @click="onRandomize">
-      Randomize!
-    </Button>
+    <Button class="random-btn" @click="onRandomize">Randomize!</Button>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
-import { Getter } from 'vuex-class';
-import APIObject from '../store/api/models/APIObject';
+import { Component, Vue, Watch } from "vue-property-decorator";
+import { Getter } from "vuex-class";
+import APIObject from "../store/api/models/APIObject";
 
-import Header from '@/components/Header.vue';
-import APIDetails from '@/components/APIDetails.vue';
-import Button from '@/components/Button.vue';
+import Header from "@/components/Header.vue";
+import APIDetails from "@/components/APIDetails.vue";
+import Button from "@/components/Button.vue";
 
-const namespace = 'api';
+const namespace = "api";
 
 @Component({
   components: {
     Header,
     APIDetails,
-    Button
-  }
+    Button,
+  },
 })
 export default class Random extends Vue {
-  @Getter('getRandomApi', { namespace })
+  @Getter("getRandomApi", { namespace })
   readonly getRandomApi!: () => APIObject;
-  @Getter('isLoading', { namespace })
+  @Getter("isLoading", { namespace })
   readonly isLoading!: boolean;
-  @Watch('isLoading')
+  @Watch("isLoading")
   onIsLoading(loading: boolean) {
     if (!loading) {
       this.api = this.getRandomApi();

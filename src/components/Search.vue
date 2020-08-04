@@ -1,24 +1,30 @@
 <template>
   <div class="search-container">
-    <input type="text" placeholder="Search" class="search-input" v-model="value" @keyup="onInputChange">
+    <input
+      type="text"
+      placeholder="Search"
+      class="search-input"
+      v-model="value"
+      @keyup="onInputChange"
+    />
     <SearchSvg class="search-svg" />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Emit } from 'vue-property-decorator';
+import { Component, Vue, Emit } from "vue-property-decorator";
 
-import SearchSvg from '@/assets/Search.svg';
+import SearchSvg from "@/assets/Search.svg";
 
 @Component({
   components: {
-    SearchSvg
-  }
+    SearchSvg,
+  },
 })
 export default class Search extends Vue {
-  value = '';
+  value = "";
 
-  @Emit('change')
+  @Emit("change")
   onInputChange() {
     return this.value;
   }
@@ -26,8 +32,8 @@ export default class Search extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '~@/scss/colors';
-@import '~@/scss/mixins';
+@import "~@/scss/colors";
+@import "~@/scss/mixins";
 
 .search-container {
   position: relative;
@@ -60,7 +66,6 @@ export default class Search extends Vue {
     transform: scale(1.2);
     padding: 6px 8px;
   }
-
 }
 
 @include xl {

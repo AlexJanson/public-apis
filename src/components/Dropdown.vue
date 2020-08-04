@@ -1,35 +1,35 @@
 <template>
   <div class="dropdown-container">
     <select class="dropdown-input" v-model="selected" @change="$emit('selected', selected)">
-      <option value="" disabled selected>{{ placeholder }}</option>
-      <option value="">No category</option>
+      <option value disabled selected>{{ placeholder }}</option>
+      <option value>No category</option>
       <option v-for="(item, index) in items" :value="item" :key="index">{{ item }}</option>
     </select>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Emit } from 'vue-property-decorator';
+import { Component, Vue, Prop, Emit } from "vue-property-decorator";
 
 @Component
 export default class Dropdown extends Vue {
-  @Prop({ type: String, required: true, default: 'Pick an option' })
+  @Prop({ type: String, required: true, default: "Pick an option" })
   readonly placeholder!: string;
   @Prop({ type: Array, required: true })
   readonly items!: Array<string>;
-  
-  selected = '';
 
-  @Emit('selected')
+  selected = "";
+
+  @Emit("selected")
   onSelect() {
     return this.selected;
-  }  
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~@/scss/colors';
-@import '~@/scss/mixins';
+@import "~@/scss/colors";
+@import "~@/scss/mixins";
 
 .dropdown-container {
   position: relative;
@@ -53,7 +53,6 @@ export default class Dropdown extends Vue {
       outline: none;
     }
   }
-
 }
 
 @include xl {
