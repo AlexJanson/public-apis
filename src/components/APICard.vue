@@ -49,65 +49,61 @@ export default class APICard extends Vue {
 <style lang="scss" scoped>
 @import '~@/scss/colors';
 
+* {
+  transition: background 200ms ease-in-out;
+}
+
 .api-card-container {
   height: 220px;
   width: 443px;
+  min-height: 220px;
+  min-width: 443px;
   background-color: $color-white;
   border-radius: 8px;
   box-shadow: 3px 4px 5px 0 rgba($color-black, .25);
-  margin: 0 0 35px 0;
+  margin: 0 20px 20px 0;
   cursor: pointer;
-  transition: background 200ms ease-in-out, box-shadow 200ms ease-in-out;
+  float: left;
 
   &:hover {
-    transition: background 200ms ease-in-out, box-shadow 200ms ease-in-out;
     background-color: $color-primary;
     box-shadow: 3px 4px 5px 0 rgba($color-primary, .5);
 
     .api-card-content {
       .github-svg {
-        transition: fill 200ms ease-in-out;
         fill: $color-white;
       }
 
       .api-title {
-        transition: color 200ms ease-in-out;
         color: $color-white;
       }
 
       .api-description {
-        transition: color 200ms ease-in-out;
         color: $color-dark-white;
       }
 
       .api-card-details {
-        transition: color 200ms ease-in-out;
         color: $color-white;
 
         .key-svg {
-          transition: fill 200ms ease-in-out;
           fill: $color-white;
         }
 
         .lock-svg {
-          transition: fill 200ms ease-in-out;
           fill: $color-white;
         }
 
         .cors-svg {
-          transition: fill 200ms ease-in-out;
           fill: $color-white;
         }
 
         & > p {
-          transition: color 200ms ease-in-out;
           color: $color-dark-white;
         }
 
       }
 
       .api-card-category {
-        transition: color 200ms ease-in-out;
         color: $color-white;
       }
 
@@ -119,13 +115,11 @@ export default class APICard extends Vue {
     padding: 15px;
 
     .github-svg {
-      transition: fill 200ms ease-in-out;
       fill: $color-black;
       transform-origin: top left;
     }
 
     .api-title {
-      transition: color 200ms ease-in-out;
       display: inline-block;
       margin: 0 0 0 20px;
       font-size: 24px;
@@ -137,7 +131,6 @@ export default class APICard extends Vue {
     }
 
     .api-description {
-      transition: color 200ms ease-in-out;
       display: -webkit-box;
       max-height: 40px;
       height: 40px;
@@ -149,7 +142,6 @@ export default class APICard extends Vue {
     }
     
     .api-card-details {
-      transition: color 200ms ease-in-out;
       color: $color-black;
 
       & > * {
@@ -157,22 +149,18 @@ export default class APICard extends Vue {
       }
 
       .key-svg {
-        transition: fill 200ms ease-in-out;
         fill: $color-black;
       }
 
       .lock-svg {
-        transition: fill 200ms ease-in-out;
         fill: $color-black;
       }
 
       .cors-svg {
-        transition: fill 200ms ease-in-out;
         fill: $color-black;
       }
 
       & > p {
-        transition: color 200ms ease-in-out;
         margin: 0 25px 0 7px;
         color: $color-light-gray;
       }
@@ -180,7 +168,6 @@ export default class APICard extends Vue {
     }
 
     .api-card-category {
-        transition: color 200ms ease-in-out;
         color: $color-black;
         font-weight: bold;
       }
@@ -188,4 +175,4 @@ export default class APICard extends Vue {
   }
 
 }
-</style>0
+</style>

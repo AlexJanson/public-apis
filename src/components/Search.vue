@@ -27,6 +27,7 @@ export default class Search extends Vue {
 
 <style lang="scss" scoped>
 @import '~@/scss/colors';
+@import '~@/scss/mixins';
 
 .search-container {
   position: relative;
@@ -60,5 +61,15 @@ export default class Search extends Vue {
     padding: 6px 8px;
   }
 
+}
+
+@include xl {
+  .search-container {
+    width: 400px;
+
+    .search-input {
+      width: 360px;
+    }
+  }
 }
 </style>

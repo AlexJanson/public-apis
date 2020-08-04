@@ -62,6 +62,11 @@ export default class Random extends Vue {
 
   .random-btn {
     font-size: 22px;
+    margin: 0 0 20px 0;
+  }
+
+  .api-details {
+    margin: 50px 0 0 0;
   }
 }
 </style>

@@ -7,6 +7,7 @@
       <div class="view">
         <router-view />
       </div>
+      <Footer class="footer" />
     </div>
   </div>
 </template>
@@ -15,6 +16,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 import Navbar from '@/components/Navbar.vue';
+import Footer from '@/components/Footer.vue';
 import StripeOne from '@/assets/StripeOne.svg';
 import StripeTwo from '@/assets/StripeTwo.svg';
 import { Action } from 'vuex-class';
@@ -25,7 +27,8 @@ const namespace = 'api';
   components: {
     Navbar,
     StripeOne,
-    StripeTwo
+    StripeTwo,
+    Footer
   }
 })
 export default class App extends Vue {
@@ -56,6 +59,7 @@ body {
   background-color: $color-background;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
 }
 
 h1, h2, h3,
@@ -88,6 +92,13 @@ h4, h5, h6 {
 
 .content {
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .footer {
+    margin-top: auto;
+  }
 }
 
 .relative {

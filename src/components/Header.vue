@@ -23,6 +23,8 @@ export default class Header extends Vue {
 </script>
 
 <style lang="scss" scoped>
+@import '~@/scss/mixins';
+
 .header-container {
   margin: 110px 0 0 0;
 
@@ -36,5 +38,18 @@ export default class Header extends Vue {
     font-size: 22px;
   }
 
+}
+
+@include xl {
+  .header-container {
+    .title {
+      font-size: 52px;
+    }
+
+    .description {
+      font-size: 26px;
+    }
+
+  }
 }
 </style>

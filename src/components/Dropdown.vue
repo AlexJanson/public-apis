@@ -29,6 +29,7 @@ export default class Dropdown extends Vue {
 
 <style lang="scss" scoped>
 @import '~@/scss/colors';
+@import '~@/scss/mixins';
 
 .dropdown-container {
   position: relative;
@@ -53,5 +54,11 @@ export default class Dropdown extends Vue {
     }
   }
 
+}
+
+@include xl {
+  .dropdown-container {
+    width: 400px;
+  }
 }
 </style>
