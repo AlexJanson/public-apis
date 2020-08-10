@@ -90,6 +90,15 @@ export default class Home extends Vue {
   }
 
   mounted() {
+    if (this.$route.params.scroll === "categories") {
+      const categories = document.querySelector("#categories") as HTMLElement;
+      if (categories) {
+        categories.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }
     this.$nextTick(() => {
       window.addEventListener("resize", this.onResize);
     });

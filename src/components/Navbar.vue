@@ -60,7 +60,12 @@ export default class Navbar extends Vue {
     // If we aren't yet on the home page redirect to the home page
     // this is because the catergories are on the home page
     if (this.$router.currentRoute.path !== "/") {
-      this.$router.push("/");
+      this.$router.push({
+        name: "Home",
+        params: {
+          scroll: "categories",
+        },
+      });
     }
 
     // Scroll to the categories element
