@@ -39,8 +39,6 @@ import MobileMenu from "@/components/MobileMenu.vue";
 export default class Navbar extends Vue {
   @Ref() readonly mobileMenu!: MobileMenu;
 
-  windowWidth = window.innerWidth;
-  isMenuOpen = false;
   scroll = window.scrollY > 0;
 
   onHome() {
@@ -50,11 +48,8 @@ export default class Navbar extends Vue {
   }
 
   onMenu() {
+    // Call the openMenu function inside the child component to open the menu
     (this.$refs.mobileMenu as Vue & { openMenu: () => void }).openMenu();
-  }
-
-  onResize() {
-    this.windowWidth = window.innerWidth;
   }
 
   onScroll() {
@@ -62,9 +57,13 @@ export default class Navbar extends Vue {
   }
 
   onCategories() {
+    // If we aren't yet on the home page redirect to the home page
+    // this is because the catergories are on the home page
     if (this.$router.currentRoute.path !== "/") {
       this.$router.push("/");
     }
+
+    // Scroll to the categories element
     const categories = document.querySelector("#categories") as HTMLElement;
     if (categories) {
       categories.scrollIntoView({
@@ -74,25 +73,20 @@ export default class Navbar extends Vue {
     }
   }
 
-  @Watch("windowWidth")
-  onWindowWidthChange(newWidth: number) {
-    this.windowWidth = newWidth;
-  }
-
   @Watch("scroll")
   onWindowScroll(scroll: boolean) {
     this.scroll = scroll;
   }
 
   mounted() {
+    // Register the scroll event Listener when component is mounted to the DOM
     this.$nextTick(() => {
-      window.addEventListener("resize", this.onResize);
       window.addEventListener("scroll", this.onScroll);
     });
   }
 
   beforeDestroy() {
-    window.removeEventListener("resize", this.onResize);
+    // Remove the event listener when the component is destroyed to prevent memory leaks
     window.removeEventListener("scroll", this.onScroll);
   }
 }

@@ -58,6 +58,8 @@ export default class APIsList extends Vue {
     this.calculateTotalPages();
   }
 
+  // Calculating the total amount of pages we have
+  // based on the display amount and the size of the list
   calculateTotalPages() {
     const apis = this.filterList(this.getApis);
     this.totalPages = Math.ceil(apis.length / this.displayAmount);

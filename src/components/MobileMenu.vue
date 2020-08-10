@@ -29,10 +29,12 @@ export default class MobileMenu extends Vue {
   open = false;
   overlay = false;
 
+  // Get the content element from the page
   getContentEl() {
     return document.querySelector(".content");
   }
 
+  // Remove the overlay clasess and styles when the animation is finished
   afterLeave() {
     this.overlay = false;
 
@@ -43,6 +45,7 @@ export default class MobileMenu extends Vue {
     }
   }
 
+  // Toggle the menu overlay classes and styles
   openMenu() {
     this.overlay = true;
     this.open = true;
@@ -58,7 +61,9 @@ export default class MobileMenu extends Vue {
     this.open = false;
   }
 
+  // Redirect when we click on the categories button
   onCategories() {
+    // Check if we aren't yet on the home page
     if (this.$router.currentRoute.path !== "/") {
       this.$router.push("/");
     }

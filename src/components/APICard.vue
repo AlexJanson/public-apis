@@ -39,6 +39,7 @@ export default class APICard extends Vue {
   @Prop({ type: Object, required: true })
   readonly api!: APIObject;
 
+  // Redirects to the detail page for this records id
   goToDetail() {
     window.scrollTo(0, 0);
     this.$router.push(`/detail/${this.api.id}`);

@@ -66,6 +66,8 @@ export default class Home extends Vue {
   }
 
   get displayAmount() {
+    // Based on the window size and breakpoints we increase
+    // the amount of records we are outputting per page
     if (this.windowWidth > 992 && this.windowWidth < 1200) {
       return 8;
     }
