@@ -3,12 +3,12 @@
     <nav class="nav">
       <HomeSvg class="home-svg" @click="onHome" />
       <div class="nav-links">
-        <div class="nav-mobile" v-if="windowWidth < 768">
+        <div class="nav-mobile">
           <Button class="categories" @click="onCategories">Categories</Button>
           <HamburgerSvg class="hamburger-svg" @click="onMenu" />
           <MobileMenu ref="mobileMenu" />
         </div>
-        <div class="nav-content" v-if="windowWidth >= 768">
+        <div class="nav-content">
           <ul class="nav-list">
             <router-link to="/" class="nav-link" exact>Home</router-link>
             <p class="nav-link" @click="onCategories">Categories</p>
@@ -100,6 +100,7 @@ export default class Navbar extends Vue {
 
 <style lang="scss" scoped>
 @import "~@/scss/colors";
+@import "~@/scss/mixins";
 
 .nav-container {
   padding: 20px;
@@ -139,34 +140,32 @@ export default class Navbar extends Vue {
       align-items: flex-end;
     }
 
-    .nav-links {
-      .nav-content {
+    .nav-content {
+      height: 100%;
+      display: none;
+      .nav-list {
         height: 100%;
-        .nav-list {
-          height: 100%;
-          margin: 0;
-          display: flex;
-          align-items: flex-end;
-          flex-direction: row;
-          line-height: 0.8;
+        margin: 0;
+        display: flex;
+        align-items: flex-end;
+        flex-direction: row;
+        line-height: 0.8;
 
-          .nav-link {
-            color: $color-black;
-            // margin-top: auto;
-            justify-content: flex-end;
-            text-decoration: none;
-            font-weight: bold;
-            cursor: pointer;
+        .nav-link {
+          color: $color-black;
+          justify-content: flex-end;
+          text-decoration: none;
+          font-weight: bold;
+          cursor: pointer;
 
-            &.router-link-active,
-            &:hover {
-              color: $color-primary;
-            }
+          &.router-link-active,
+          &:hover {
+            color: $color-primary;
           }
+        }
 
-          & > *:not(:first-child) {
-            margin: 0 0 0 50px;
-          }
+        & > *:not(:first-child) {
+          margin: 0 0 0 50px;
         }
       }
     }
@@ -176,6 +175,42 @@ export default class Navbar extends Vue {
     transition: background 200ms ease-in-out, box-shadow 200ms ease-in-out;
     background-color: $color-white;
     box-shadow: 0 2px 5px 0 rgba($color-black, 0.25);
+  }
+}
+
+@include md {
+  .nav-links {
+    .nav-content {
+      display: block !important;
+    }
+  }
+
+  .nav-mobile {
+    display: none !important;
+  }
+}
+
+@include lg {
+  .nav-links {
+    .nav-content {
+      display: block !important;
+    }
+  }
+
+  .nav-mobile {
+    display: none !important;
+  }
+}
+
+@include xl {
+  .nav-links {
+    .nav-content {
+      display: block !important;
+    }
+  }
+
+  .nav-mobile {
+    display: none !important;
   }
 }
 </style>
