@@ -116,7 +116,7 @@ export default class Home extends Vue {
 .illustration-svg {
   display: block;
   margin: 100px auto;
-  transform: scale(1.6);
+  transform: scale(1.4);
 }
 
 @include md {

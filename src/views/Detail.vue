@@ -42,6 +42,7 @@ export default class Detail extends Vue {
 
   .recommended {
     margin: 100px 0 0 0;
+    max-width: 100vw;
   }
 }
 </style>

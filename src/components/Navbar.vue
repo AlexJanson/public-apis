@@ -103,7 +103,7 @@ export default class Navbar extends Vue {
 
 .nav-container {
   padding: 20px;
-  width: calc(100% - 20px * 2);
+  width: calc(100vw - 20px * 2);
   position: fixed;
   top: 0;
   z-index: 9;

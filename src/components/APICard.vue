@@ -5,12 +5,18 @@
       <h1 class="api-title" :title="api.name">{{ api.name }}</h1>
       <p class="api-description">{{ api.description }}</p>
       <div class="api-card-details">
-        <KeySvg class="key-svg" />
-        <p>{{ api.apikey ? api.apikey : "N/A" }}</p>
-        <LockSvg class="lock-svg" />
-        <p>{{ api.https ? "HTTPS" : "Unavailable" }}</p>
-        <CorsSvg class="cors-svg" />
-        <p>{{ api.cors }}</p>
+        <div class="api-detail">
+          <KeySvg class="key-svg" />
+          <p>{{ api.apikey ? api.apikey : "N/A" }}</p>
+        </div>
+        <div class="api-detail">
+          <LockSvg class="lock-svg" />
+          <p>{{ api.https ? "HTTPS" : "Unavailable" }}</p>
+        </div>
+        <div class="api-detail">
+          <CorsSvg class="cors-svg" />
+          <p>{{ api.cors }}</p>
+        </div>
       </div>
       <p class="api-card-category">{{ api.category }}</p>
     </div>
@@ -49,16 +55,16 @@ export default class APICard extends Vue {
 
 <style lang="scss" scoped>
 @import "~@/scss/colors";
+@import "~@/scss/mixins";
 
 * {
   transition: background 200ms ease-in-out;
 }
 
 .api-card-container {
-  height: 220px;
   width: 443px;
   min-height: 220px;
-  min-width: 443px;
+  min-width: 280px;
   background-color: $color-white;
   border-radius: 8px;
   box-shadow: 3px 4px 5px 0 rgba($color-black, 0.25);
@@ -86,20 +92,22 @@ export default class APICard extends Vue {
       .api-card-details {
         color: $color-white;
 
-        .key-svg {
-          fill: $color-white;
-        }
+        .api-detail {
+          .key-svg {
+            fill: $color-white;
+          }
 
-        .lock-svg {
-          fill: $color-white;
-        }
+          .lock-svg {
+            fill: $color-white;
+          }
 
-        .cors-svg {
-          fill: $color-white;
-        }
+          .cors-svg {
+            fill: $color-white;
+          }
 
-        & > p {
-          color: $color-dark-white;
+          & > p {
+            color: $color-dark-white;
+          }
         }
       }
 
@@ -124,7 +132,7 @@ export default class APICard extends Vue {
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
-      width: 80%;
+      width: 68%;
       margin-bottom: 10px;
     }
 
@@ -142,31 +150,48 @@ export default class APICard extends Vue {
     .api-card-details {
       color: $color-black;
 
-      & > * {
+      .api-detail {
         display: inline;
-      }
+        margin: 0 0 8px 0;
 
-      .key-svg {
-        fill: $color-black;
-      }
+        & > * {
+          display: inline;
+        }
 
-      .lock-svg {
-        fill: $color-black;
-      }
+        .key-svg {
+          fill: $color-black;
+        }
 
-      .cors-svg {
-        fill: $color-black;
-      }
+        .lock-svg {
+          fill: $color-black;
+        }
 
-      & > p {
-        margin: 0 25px 0 7px;
-        color: $color-light-gray;
+        .cors-svg {
+          fill: $color-black;
+        }
+
+        & > p {
+          margin: 0 25px 0 7px;
+          color: $color-light-gray;
+        }
       }
     }
 
     .api-card-category {
       color: $color-black;
       font-weight: bold;
+    }
+  }
+}
+
+@media only screen and (max-width: 499px) {
+  .api-card-container {
+    .api-card-content {
+      .api-card-details {
+        .api-detail {
+          display: block;
+        }
+      }
     }
   }
 }

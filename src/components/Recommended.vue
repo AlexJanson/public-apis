@@ -42,4 +42,10 @@ export default class Recommended extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.recommended-container {
+  margin: 35px 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 </style>

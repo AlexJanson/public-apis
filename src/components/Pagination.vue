@@ -229,4 +229,24 @@ export default class Pagination extends Vue {
     border: 1px solid $color-primary;
   }
 }
+
+@media only screen and (max-width: 499px) {
+  .pagination-container {
+    button {
+      width: 25px;
+      height: 25px;
+      font-size: 12px;
+    }
+
+    p {
+      width: 25px;
+      height: 25px;
+      font-size: 12px;
+    }
+
+    svg {
+      transform: scale(0.8);
+    }
+  }
+}
 </style>
