@@ -30,7 +30,7 @@
       </div>
 
       <div v-else class="pages">
-        <button @click="setCurrentPage(pages)">1</button>
+        <button @click="setCurrentPage(1)">1</button>
         <p>...</p>
         <button @click="setCurrentPage(currentPage - 1)">{{ currentPage - 1 }}</button>
         <button class="active">{{ currentPage }}</button>

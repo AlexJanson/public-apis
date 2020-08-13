@@ -30,6 +30,8 @@ export default class APIsList extends Vue {
   search!: string;
   @Prop(String)
   category!: string;
+  @Prop(Boolean)
+  alphabetical!: boolean;
 
   totalPages = 1;
   page = 1;
@@ -53,20 +55,20 @@ export default class APIsList extends Vue {
   @Getter("isLoading", { namespace })
   readonly isLoading!: boolean;
 
-  @Watch("getApis")
-  onFetched() {
-    this.calculateTotalPages();
-  }
-
   // Calculating the total amount of pages we have
   // based on the display amount and the size of the list
   calculateTotalPages() {
-    const apis = this.filterList(this.getApis);
+    const apis = this.filterList(this.getApis.slice());
     this.totalPages = Math.ceil(apis.length / this.displayAmount);
   }
 
   @Watch("displayAmount")
   onDisplayAmountChange() {
+    this.calculateTotalPages();
+  }
+
+  @Watch("alphabetical")
+  onAlphabeticalChange() {
     this.calculateTotalPages();
   }
 
@@ -79,12 +81,26 @@ export default class APIsList extends Vue {
     if (this.category) {
       apis = apis.filter((api) => api.category === this.category);
     }
+    if (this.alphabetical) {
+      apis.sort((a: APIObject, b: APIObject): number => {
+        const aName = a.name.toUpperCase();
+        const bName = b.name.toUpperCase();
+
+        if (aName > bName) {
+          return 1;
+        } else if (bName > aName) {
+          return -1;
+        }
+
+        return 0;
+      });
+    }
 
     return apis;
   }
 
   get apis() {
-    let result: Array<APIObject> = this.getApis;
+    let result: Array<APIObject> = this.getApis.slice();
     result = this.filterList(result);
     const page = result.slice(
       this.displayAmount * (this.page - 1),
@@ -108,8 +124,6 @@ export default class APIsList extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "~@/scss/mixins";
-
 .list {
   margin: 35px 0 0 0;
   display: flex;

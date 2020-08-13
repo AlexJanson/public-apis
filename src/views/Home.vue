@@ -20,10 +20,15 @@
           class="dropdown-filter"
         />
       </div>
+      <div class="alphabetical">
+        <p class="spaced-heading">Alphabetical</p>
+        <Checkbox @checked="onChecked" classs="alphabetical-filter" />
+      </div>
     </div>
     <APIsList
       :search="search"
       :category="category"
+      :alphabetical="alphabetical"
       :displayAmount="displayAmount"
       class="api-list"
     />
@@ -39,6 +44,7 @@ import IllustrationSvg from "@/assets/Illustration.svg";
 import Search from "@/components/Search.vue";
 import Dropdown from "@/components/Dropdown.vue";
 import APIsList from "@/components/APIsList.vue";
+import Checkbox from "@/components/Checkbox.vue";
 
 const namespace = "api";
 
@@ -49,6 +55,7 @@ const namespace = "api";
     Search,
     Dropdown,
     APIsList,
+    Checkbox,
   },
 })
 export default class Home extends Vue {
@@ -56,6 +63,7 @@ export default class Home extends Vue {
 
   search = "";
   category = "";
+  alphabetical = false;
 
   onSearch(value: string) {
     this.search = value;
@@ -63,6 +71,10 @@ export default class Home extends Vue {
 
   onCategory(value: string) {
     this.category = value;
+  }
+
+  onChecked(value: boolean) {
+    this.alphabetical = value;
   }
 
   get displayAmount() {

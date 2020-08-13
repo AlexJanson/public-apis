@@ -68,7 +68,8 @@ export default class APICard extends Vue {
   background-color: $color-white;
   border-radius: 8px;
   box-shadow: 3px 4px 5px 0 rgba($color-black, 0.25);
-  margin: 0 20px 20px 0;
+  margin-bottom: 20px;
+  margin-right: 20px;
   cursor: pointer;
   float: left;
 
@@ -119,6 +120,7 @@ export default class APICard extends Vue {
 
   .api-card-content {
     padding: 15px;
+    width: 100%;
 
     .github-svg {
       fill: $color-black;
@@ -138,6 +140,7 @@ export default class APICard extends Vue {
 
     .api-description {
       display: -webkit-box;
+      width: 90%;
       max-height: 40px;
       height: 40px;
       line-height: 1.3;
@@ -181,6 +184,12 @@ export default class APICard extends Vue {
       color: $color-black;
       font-weight: bold;
     }
+  }
+}
+
+@include sm {
+  .api-card-container {
+    margin-right: 0;
   }
 }
 
