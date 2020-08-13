@@ -1,24 +1,10 @@
 # public-apis
 
-## Project setup
-```
-npm install
-```
+## Starting the application
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Use npm run serve in the terminal
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Hour log
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Hour log:
+[Hour Log Alex Janson](https://docs.google.com/spreadsheets/d/1Ay8Kd5UBA2I49dwWWEN6pghb5m5Ng_zSWj9PIqITAzo)
