@@ -47,5 +47,9 @@ export default class Recommended extends Vue {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  h1 {
+    width: 100%;
+  }
 }
 </style>

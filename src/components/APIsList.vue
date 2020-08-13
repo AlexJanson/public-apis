@@ -62,6 +62,13 @@ export default class APIsList extends Vue {
     this.totalPages = Math.ceil(apis.length / this.displayAmount);
   }
 
+  @Watch("isLoading")
+  isLoaded() {
+    if (!this.isLoading) {
+      this.calculateTotalPages();
+    }
+  }
+
   @Watch("displayAmount")
   onDisplayAmountChange() {
     this.calculateTotalPages();
