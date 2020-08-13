@@ -153,16 +153,20 @@ export default class Home extends Vue {
       grid-row: 3;
       display: grid;
 
-      grid-template-columns: repeat(2, calc((100% - 50px) / 2));
+      grid-template-columns: repeat(2, calc((100% - 50px) / 3));
       grid-template-rows: 100%;
       column-gap: 50px;
 
-      .search-filter {
+      .search {
         grid-column: 1 / 2;
       }
 
-      .dropdown-filter {
+      .dropdown {
         grid-column: 2 / 3;
+      }
+
+      .alphabetical {
+        grid-column: 3 / 4;
       }
     }
 
@@ -194,16 +198,20 @@ export default class Home extends Vue {
       grid-row: 3;
       display: grid;
 
-      grid-template-columns: repeat(2, calc((100% - 50px) / 2));
+      grid-template-columns: repeat(3, calc((100% - 50px) / 3));
       grid-template-rows: 100%;
       column-gap: 50px;
 
-      .search-filter {
+      .search {
         grid-column: 1 / 2;
       }
 
-      .dropdown-filter {
+      .dropdown {
         grid-column: 2 / 3;
+      }
+
+      .alphabetical {
+        grid-column: 3 / 4;
       }
     }
 
@@ -236,16 +244,20 @@ export default class Home extends Vue {
       grid-row: 3;
       display: grid;
 
-      grid-template-columns: repeat(2, calc((100% - 50px) / 2));
+      grid-template-columns: repeat(3, calc((100% - 50px) / 3));
       grid-template-rows: 100%;
       column-gap: 50px;
 
-      .search-filter {
+      .search {
         grid-column: 1 / 2;
       }
 
-      .dropdown-filter {
+      .dropdown {
         grid-column: 2 / 3;
+      }
+
+      .alphabetical {
+        grid-column: 3 / 4;
       }
     }
 
